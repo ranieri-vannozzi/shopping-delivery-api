@@ -1,10 +1,10 @@
-package it.ranierivannozzi.shopping.application;
+package it.ranierivannozzi.shopping;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationTests {
+class ApiTests {
 
 	@Test
 	void contextLoads() {
