@@ -14,6 +14,7 @@ import it.ranierivannozzi.shopping.model.response.ShoppingRouteResponse;
 import it.ranierivannozzi.shopping.route.ApiRoute;
 import it.ranierivannozzi.shopping.route.ShoppingRoute;
 import it.ranierivannozzi.shopping.service.IShoppingService;
+import it.ranierivannozzi.shopping.entity.ShoppingEntity;
 
 @RestController
 @RequestMapping(ApiRoute.V1 + ShoppingRoute.ROOT)
