@@ -20,6 +20,19 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
+      - name: Install Docker Compose
+        run: sudo apt-get update && sudo apt-get install -y docker-compose
+
+      - name: Start PostgreSQL with Docker Compose
+        run: docker-compose -f docker-compose.yml up -d
+
+      - name: Wait for PostgreSQL to be ready
+        run: |
+          until docker exec $(docker ps -qf "name=postgres") pg_isready -U test; do
+            echo "Waiting for database...";
+            sleep 2;
+          done
+
       - name: Build with Maven
         run: mvn -B clean install --file pom.xml
 
