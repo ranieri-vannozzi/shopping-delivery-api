@@ -53,7 +53,7 @@ public class ShoppingParser {
     return item;
   }
 
-  public static ShoppingResponse toResponse(ShoppingEntity entity) {
+  public static ShoppingResponse toResponse(ShoppingEntity entity, Boolean includeItems) {
     ShoppingResponse response = new ShoppingResponse();
     response.setId(entity.getId());
     response.setDeliveryLatitude(entity.getDeliveryLatitude());
@@ -69,7 +69,7 @@ public class ShoppingParser {
     response.setTotalAmount(entity.getTotalAmount());
     response.setWarehouseId(entity.getWarehouse() != null ? entity.getWarehouse().getId() : null);
 
-    if (entity.getItems() != null) {
+    if (includeItems && entity.getItems() != null) {
       response.setItems(
           entity.getItems().stream()
               .map(

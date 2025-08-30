@@ -1,6 +1,8 @@
 package it.ranierivannozzi.shopping.service;
 
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import it.ranierivannozzi.shopping.entity.ShoppingEntity;
 import it.ranierivannozzi.shopping.entity.WarehouseEntity;
@@ -41,7 +43,7 @@ public class ShoppingService implements IShoppingService {
 
     ShoppingEntity saved = shoppingRepository.save(shoppingEntity);
 
-    return ShoppingParser.toResponse(saved);
+    return ShoppingParser.toResponse(saved, true);
   }
 
   @Override
@@ -53,7 +55,7 @@ public class ShoppingService implements IShoppingService {
     if (shoppingEntity.getStatus().isEditable()) {
       ShoppingEntity updated =
           shoppingRepository.save(editOnlyAvailableFields(shoppingEntity, request));
-      return ShoppingParser.toResponse(updated);
+      return ShoppingParser.toResponse(updated, true);
 
     } else {
       throw new ShoppingNotEditableException(id);
@@ -64,20 +66,20 @@ public class ShoppingService implements IShoppingService {
   public ShoppingResponse findById(Long id) {
     ShoppingEntity shoppingEntity =
         shoppingRepository.findById(id).orElseThrow(() -> new ShoppingNotFoundException(id));
-    return ShoppingParser.toResponse(shoppingEntity);
+    return ShoppingParser.toResponse(shoppingEntity, true);
   }
 
   @Override
-  public List<ShoppingResponse> findAll(ShoppingStatus status) {
-    List<ShoppingEntity> entities;
+  public Page<ShoppingResponse> findAll(Pageable pageable, ShoppingStatus status) {
+    Page<ShoppingEntity> entityPage;
 
     if (status != null) {
-      entities = shoppingRepository.findByStatus(status);
+      entityPage = shoppingRepository.findByStatus(pageable, status);
     } else {
-      entities = shoppingRepository.findAll();
+      entityPage = shoppingRepository.findAll(pageable);
     }
 
-    return entities.stream().map(ShoppingParser::toResponse).toList();
+    return entityPage.map(entity -> ShoppingParser.toResponse(entity, false));
   }
 
   @Override

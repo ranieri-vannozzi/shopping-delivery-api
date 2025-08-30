@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ShoppingItemResponse {
-
+public class ShoppingItemResponse extends BaseResponse {
   private Long id;
   private String productName;
   private String productCode;

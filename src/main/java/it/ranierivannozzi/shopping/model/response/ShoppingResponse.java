@@ -8,7 +8,7 @@ import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
 
 @Data
 @NoArgsConstructor
-public class ShoppingResponse {
+public class ShoppingResponse extends BaseResponse {
   private Long id;
   private Double deliveryLatitude;
   private Double deliveryLongitude;

@@ -1,9 +1,13 @@
 package it.ranierivannozzi.shopping.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +19,7 @@ import it.ranierivannozzi.shopping.openapi.ShoppingOpenApi;
 import it.ranierivannozzi.shopping.route.ApiRoute;
 import it.ranierivannozzi.shopping.route.ShoppingRoute;
 import it.ranierivannozzi.shopping.service.IShoppingService;
+import it.ranierivannozzi.shopping.utils.SortUtils;
 
 @RestController
 @RequestMapping(ApiRoute.V1 + ShoppingRoute.ROOT)
@@ -61,9 +66,21 @@ public class ShoppingController {
         @ApiResponse(responseCode = "200", description = ShoppingOpenApi.GET_ALL_RESPONSE_200)
       })
   @GetMapping
-  public ResponseEntity<List<ShoppingResponse>> getAllShopping(
+  public ResponseEntity<Page<ShoppingResponse>> getAllShopping(
+      @RequestParam(defaultValue = "0")
+          @Parameter(description = "Zero-based page number for pagination")
+          int pageNumber,
+      @RequestParam(defaultValue = "10") @Parameter(description = "Number of items per page")
+          int pageSize,
+      @RequestParam(required = false) @Parameter(description = "Field(s) to sort by")
+          String[] sortBy,
+      @RequestParam(defaultValue = "asc")
+          @Parameter(description = "Sort direction: 'asc' or 'desc'")
+          String[] sortDirection,
       @RequestParam(required = false) ShoppingStatus status) {
-    List<ShoppingResponse> list = shoppingService.findAll(status);
+    Pageable pageable =
+        PageRequest.of(pageNumber, pageSize, SortUtils.getSort(sortBy, sortDirection));
+    Page<ShoppingResponse> list = shoppingService.findAll(pageable, status);
     return ResponseEntity.ok(list);
   }
 
