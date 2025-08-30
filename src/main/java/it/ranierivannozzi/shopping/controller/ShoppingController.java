@@ -11,16 +11,14 @@ import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
 import it.ranierivannozzi.shopping.model.request.ShoppingRequest;
 import it.ranierivannozzi.shopping.model.response.ShoppingResponse;
 import it.ranierivannozzi.shopping.model.response.ShoppingRouteResponse;
+import it.ranierivannozzi.shopping.openapi.ShoppingOpenApi;
 import it.ranierivannozzi.shopping.route.ApiRoute;
 import it.ranierivannozzi.shopping.route.ShoppingRoute;
 import it.ranierivannozzi.shopping.service.IShoppingService;
 
 @RestController
 @RequestMapping(ApiRoute.V1 + ShoppingRoute.ROOT)
-@Tag(
-    name = "Shopping Controller",
-    description =
-        "CRUD operations for managing shoppings, including route calculation for delivery")
+@Tag(name = ShoppingOpenApi.CONTROLLER_NAME, description = ShoppingOpenApi.CONTROLLER_DESCRIPTION)
 public class ShoppingController {
 
   private final IShoppingService shoppingService;
@@ -30,12 +28,11 @@ public class ShoppingController {
   }
 
   @Operation(
-      summary = "Create a new shopping",
-      description =
-          "Creates a new shopping with given details such as delivery coordinates, items, and status",
+      summary = ShoppingOpenApi.CREATE_SUMMARY,
+      description = ShoppingOpenApi.CREATE_DESCRIPTION,
       responses = {
-        @ApiResponse(responseCode = "200", description = "Shopping created successfully"),
-        @ApiResponse(responseCode = "400", description = "Invalid request body")
+        @ApiResponse(responseCode = "200", description = ShoppingOpenApi.CREATE_RESPONSE_200),
+        @ApiResponse(responseCode = "400", description = ShoppingOpenApi.CREATE_RESPONSE_400)
       })
   @PostMapping
   public ResponseEntity<ShoppingResponse> createShopping(@RequestBody ShoppingRequest request) {
@@ -44,12 +41,11 @@ public class ShoppingController {
   }
 
   @Operation(
-      summary = "Update certain fields of a shopping",
-      description =
-          "Allows partial updates of a shopping. Only specified fields in the request will be updated",
+      summary = ShoppingOpenApi.UPDATE_SUMMARY,
+      description = ShoppingOpenApi.UPDATE_DESCRIPTION,
       responses = {
-        @ApiResponse(responseCode = "200", description = "Shopping updated successfully"),
-        @ApiResponse(responseCode = "404", description = "Shopping not found")
+        @ApiResponse(responseCode = "200", description = ShoppingOpenApi.UPDATE_RESPONSE_200),
+        @ApiResponse(responseCode = "404", description = ShoppingOpenApi.UPDATE_RESPONSE_404)
       })
   @PatchMapping(ShoppingRoute.ID)
   public ResponseEntity<ShoppingResponse> updateShopping(
@@ -63,10 +59,11 @@ public class ShoppingController {
   }
 
   @Operation(
-      summary = "Get all shoppings",
-      description =
-          "Returns a list of all shoppings. Can filter by status using the optional query parameter",
-      responses = {@ApiResponse(responseCode = "200", description = "List of shoppings returned")})
+      summary = ShoppingOpenApi.GET_ALL_SUMMARY,
+      description = ShoppingOpenApi.GET_ALL_DESCRIPTION,
+      responses = {
+        @ApiResponse(responseCode = "200", description = ShoppingOpenApi.GET_ALL_RESPONSE_200)
+      })
   @GetMapping
   public ResponseEntity<List<ShoppingResponse>> getAllShopping(
       @RequestParam(required = false) ShoppingStatus status) {
@@ -76,11 +73,11 @@ public class ShoppingController {
   }
 
   @Operation(
-      summary = "Get a shopping by ID",
-      description = "Returns a single shopping identified by its unique ID",
+      summary = ShoppingOpenApi.GET_BY_ID_SUMMARY,
+      description = ShoppingOpenApi.GET_BY_ID_DESCRIPTION,
       responses = {
-        @ApiResponse(responseCode = "200", description = "Shopping found"),
-        @ApiResponse(responseCode = "404", description = "Shopping not found")
+        @ApiResponse(responseCode = "200", description = ShoppingOpenApi.GET_BY_ID_RESPONSE_200),
+        @ApiResponse(responseCode = "404", description = ShoppingOpenApi.GET_BY_ID_RESPONSE_404)
       })
   @GetMapping(ShoppingRoute.ID)
   public ResponseEntity<ShoppingResponse> getShoppingById(@PathVariable Long id) {
@@ -91,11 +88,11 @@ public class ShoppingController {
   }
 
   @Operation(
-      summary = "Delete a shopping by ID",
-      description = "Deletes a shopping identified by its ID",
+      summary = ShoppingOpenApi.DELETE_SUMMARY,
+      description = ShoppingOpenApi.DELETE_DESCRIPTION,
       responses = {
-        @ApiResponse(responseCode = "204", description = "Shopping deleted"),
-        @ApiResponse(responseCode = "404", description = "Shopping not found")
+        @ApiResponse(responseCode = "200", description = ShoppingOpenApi.DELETE_RESPONSE_204),
+        @ApiResponse(responseCode = "404", description = ShoppingOpenApi.DELETE_RESPONSE_404)
       })
   @DeleteMapping(ShoppingRoute.ID)
   public ResponseEntity<Void> deleteShopping(@PathVariable Long id) {
@@ -105,11 +102,11 @@ public class ShoppingController {
   }
 
   @Operation(
-      summary = "Get delivery routes by shopping status",
-      description = "Calculates the delivery routes for all shoppings with the given status",
+      summary = ShoppingOpenApi.ROUTES_SUMMARY,
+      description = ShoppingOpenApi.ROUTES_DESCRIPTION,
       responses = {
-        @ApiResponse(responseCode = "200", description = "Routes returned successfully"),
-        @ApiResponse(responseCode = "404", description = "No shoppings found for the given status")
+        @ApiResponse(responseCode = "200", description = ShoppingOpenApi.ROUTES_RESPONSE_200),
+        @ApiResponse(responseCode = "404", description = ShoppingOpenApi.ROUTES_RESPONSE_404)
       })
   @GetMapping(ShoppingRoute.ROUTES)
   public ResponseEntity<List<ShoppingRouteResponse>> getShoppingRoutesByStatus(
