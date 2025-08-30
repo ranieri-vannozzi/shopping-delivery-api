@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
@@ -50,11 +49,7 @@ public class ShoppingController {
   @PatchMapping(ShoppingRoute.ID)
   public ResponseEntity<ShoppingResponse> updateShopping(
       @PathVariable Long id, @RequestBody ShoppingRequest partial) {
-
-    Optional<ShoppingResponse> optional = shoppingService.findById(id);
-    if (optional.isEmpty()) return ResponseEntity.notFound().build();
-
-    ShoppingResponse updated = shoppingService.save(partial);
+    ShoppingResponse updated = shoppingService.update(id, partial);
     return ResponseEntity.ok(updated);
   }
 

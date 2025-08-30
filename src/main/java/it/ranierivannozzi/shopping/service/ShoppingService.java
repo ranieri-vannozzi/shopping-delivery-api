@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import it.ranierivannozzi.shopping.entity.ShoppingEntity;
 import it.ranierivannozzi.shopping.entity.WarehouseEntity;
 import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
+import it.ranierivannozzi.shopping.exception.ShoppingNotEditableException;
+import it.ranierivannozzi.shopping.exception.ShoppingNotFoundException;
+import it.ranierivannozzi.shopping.exception.WarehouseNotFoundException;
 import it.ranierivannozzi.shopping.model.request.ShoppingRequest;
 import it.ranierivannozzi.shopping.model.response.ShoppingResponse;
 import it.ranierivannozzi.shopping.model.response.ShoppingRouteResponse;
@@ -33,14 +36,29 @@ public class ShoppingService implements IShoppingService {
     WarehouseEntity warehouseEntity =
         warehouseRepository
             .findById(warehouseId)
-            .orElseThrow(
-                () -> new IllegalArgumentException("Warehouse not found. Id: " + warehouseId));
+            .orElseThrow(() -> new WarehouseNotFoundException(warehouseId));
 
     ShoppingEntity shoppingEntity = ShoppingParser.toEntity(request, warehouseEntity);
 
     ShoppingEntity saved = shoppingRepository.save(shoppingEntity);
 
     return ShoppingParser.toResponse(saved);
+  }
+
+  @Override
+  public ShoppingResponse update(Long id, ShoppingRequest request) {
+
+    ShoppingEntity shoppingEntity =
+        shoppingRepository.findById(id).orElseThrow(() -> new ShoppingNotFoundException(id));
+
+    if (shoppingEntity.getStatus().isEditable()) {
+      ShoppingEntity updated =
+          shoppingRepository.save(editOnlyAvailableFields(shoppingEntity, request));
+      return ShoppingParser.toResponse(updated);
+
+    } else {
+      throw new ShoppingNotEditableException(id);
+    }
   }
 
   @Override
@@ -69,5 +87,24 @@ public class ShoppingService implements IShoppingService {
   @Override
   public List<ShoppingRouteResponse> findRoutes(ShoppingStatus status) {
     return List.of();
+  }
+
+  private ShoppingEntity editOnlyAvailableFields(
+      ShoppingEntity shoppingEntity, ShoppingRequest request) {
+    if (request.getDeliveryLatitude() != null)
+      shoppingEntity.setDeliveryLatitude(request.getDeliveryLatitude());
+    if (request.getDeliveryLongitude() != null)
+      shoppingEntity.setDeliveryLongitude(request.getDeliveryLongitude());
+    if (request.getDeliveryAddress() != null && !request.getDeliveryAddress().isBlank())
+      shoppingEntity.setDeliveryAddress(request.getDeliveryAddress());
+    if (request.getCustomerName() != null && !request.getCustomerName().isBlank())
+      shoppingEntity.setCustomerName(request.getCustomerName());
+    if (request.getCustomerPhone() != null && !request.getCustomerPhone().isBlank())
+      shoppingEntity.setCustomerPhone(request.getCustomerPhone());
+    if (request.getDeliveryNotes() != null)
+      shoppingEntity.setDeliveryNotes(request.getDeliveryNotes());
+    if (request.getRequestedDeliveryDate() != null)
+      shoppingEntity.setRequestedDeliveryDate(request.getRequestedDeliveryDate());
+    return shoppingEntity;
   }
 }

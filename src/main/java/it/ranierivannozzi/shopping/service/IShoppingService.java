@@ -13,9 +13,17 @@ public interface IShoppingService {
    * Save a new Shopping or update an existing one.
    *
    * @param request the shopping request
-   * @return the saved/updated shopping response
+   * @return the saved shopping response
    */
   ShoppingResponse save(ShoppingRequest request);
+
+  /**
+   * Update an existing shopping.
+   *
+   * @param request the shopping request
+   * @return the updated shopping response
+   */
+  ShoppingResponse update(Long id, ShoppingRequest request);
 
   /**
    * Find shopping by ID.
