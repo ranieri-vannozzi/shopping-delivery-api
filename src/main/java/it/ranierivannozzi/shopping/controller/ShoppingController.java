@@ -68,14 +68,15 @@ public class ShoppingController {
   @GetMapping
   public ResponseEntity<Page<ShoppingResponse>> getAllShopping(
       @RequestParam(defaultValue = "0")
-          @Parameter(description = "Zero-based page number for pagination")
+          @Parameter(description = ShoppingOpenApi.PAGE_NUMBER_DESCRIPTION)
           int pageNumber,
-      @RequestParam(defaultValue = "10") @Parameter(description = "Number of items per page")
+      @RequestParam(defaultValue = "10")
+          @Parameter(description = ShoppingOpenApi.PAGE_SIZE_DESCRIPTION)
           int pageSize,
-      @RequestParam(required = false) @Parameter(description = "Field(s) to sort by")
+      @RequestParam(required = false) @Parameter(description = ShoppingOpenApi.SORT_BY_DESCRIPTION)
           String[] sortBy,
       @RequestParam(defaultValue = "asc")
-          @Parameter(description = "Sort direction: 'asc' or 'desc'")
+          @Parameter(description = ShoppingOpenApi.SORT_DIRECTION_DESCRIPTION)
           String[] sortDirection,
       @RequestParam(required = false) ShoppingStatus status) {
     Pageable pageable =

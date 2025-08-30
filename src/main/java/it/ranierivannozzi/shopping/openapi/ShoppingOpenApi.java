@@ -40,5 +40,10 @@ public class ShoppingOpenApi {
   public static final String ROUTES_RESPONSE_200 = "Routes returned successfully";
   public static final String ROUTES_RESPONSE_404 = "No shopping items found for the given status";
 
+  public static final String PAGE_NUMBER_DESCRIPTION = "Zero-based page number for pagination";
+  public static final String PAGE_SIZE_DESCRIPTION = "Number of items per page";
+  public static final String SORT_BY_DESCRIPTION = "Field(s) to sort by";
+  public static final String SORT_DIRECTION_DESCRIPTION = "Sort direction: 'asc' or 'desc'";
+
   private ShoppingOpenApi() {}
 }
