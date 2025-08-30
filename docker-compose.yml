@@ -1,0 +1,12 @@
+name: 'shopping'
+services:
+  db:
+    container_name: shopping
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: shopping
+    ports:
+      - "54320:5432"
