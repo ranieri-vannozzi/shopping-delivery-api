@@ -28,8 +28,8 @@ jobs:
 
       - name: Wait for PostgreSQL to be ready
         run: |
-          until docker exec $(docker ps -qf "name=postgres") pg_isready -U test; do
-            echo "Waiting for database...";
+          until docker exec $(docker ps -qf "name=shopping") pg_isready -U test; do
+            echo "Waiting for 'shopping' database...";
             sleep 2;
           done
 
