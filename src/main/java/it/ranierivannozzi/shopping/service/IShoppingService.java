@@ -37,15 +37,7 @@ public interface IShoppingService {
    *
    * @return list of all shopping responses
    */
-  List<ShoppingResponse> findAll();
-
-  /**
-   * Retrieve a shopping list filtered by status.
-   *
-   * @param status the shopping status
-   * @return list of shopping responses with the given status
-   */
-  List<ShoppingResponse> findByStatus(ShoppingStatus status);
+  List<ShoppingResponse> findAll(ShoppingStatus status);
 
   /**
    * Delete shopping by ID.

@@ -63,8 +63,7 @@ public class ShoppingController {
   @GetMapping
   public ResponseEntity<List<ShoppingResponse>> getAllShopping(
       @RequestParam(required = false) ShoppingStatus status) {
-    List<ShoppingResponse> list =
-        (status != null) ? shoppingService.findByStatus(status) : shoppingService.findAll();
+    List<ShoppingResponse> list = shoppingService.findAll(status);
     return ResponseEntity.ok(list);
   }
 

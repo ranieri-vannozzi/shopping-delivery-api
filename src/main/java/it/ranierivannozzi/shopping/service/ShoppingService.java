@@ -68,13 +68,16 @@ public class ShoppingService implements IShoppingService {
   }
 
   @Override
-  public List<ShoppingResponse> findAll() {
-    return List.of();
-  }
+  public List<ShoppingResponse> findAll(ShoppingStatus status) {
+    List<ShoppingEntity> entities;
 
-  @Override
-  public List<ShoppingResponse> findByStatus(ShoppingStatus status) {
-    return List.of();
+    if (status != null) {
+      entities = shoppingRepository.findByStatus(status);
+    } else {
+      entities = shoppingRepository.findAll();
+    }
+
+    return entities.stream().map(ShoppingParser::toResponse).toList();
   }
 
   @Override
