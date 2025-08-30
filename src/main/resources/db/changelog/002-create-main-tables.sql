@@ -30,7 +30,7 @@ CREATE TABLE shopping (
                           CONSTRAINT chk_shopping_status CHECK (status IN ('CREATED','PROCESSING','DELIVERED','CANCELLED'))
 );
 
-CREATE TABLE product (
+CREATE TABLE shopping_item (
                                 id BIGSERIAL PRIMARY KEY,
                                 product_name VARCHAR(255) NOT NULL,
                                 product_code VARCHAR(100),

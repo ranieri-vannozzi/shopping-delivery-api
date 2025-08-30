@@ -9,8 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "product")
-public class ProductEntity {
+@Table(name = "shopping_item")
+public class ShoppingItemEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,9 +50,9 @@ public class ProductEntity {
   @JoinColumn(name = "shopping_id")
   private ShoppingEntity shopping;
 
-  public ProductEntity() {}
+  public ShoppingItemEntity() {}
 
-  public ProductEntity(String productName, Integer quantity, BigDecimal unitPrice) {
+  public ShoppingItemEntity(String productName, Integer quantity, BigDecimal unitPrice) {
     this.productName = productName;
     this.quantity = quantity;
     this.unitPrice = unitPrice;

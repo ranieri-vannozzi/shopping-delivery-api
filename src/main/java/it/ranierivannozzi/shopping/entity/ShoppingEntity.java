@@ -56,7 +56,7 @@ public class ShoppingEntity {
   private Double totalAmount;
 
   @OneToMany(mappedBy = "shopping", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private List<ProductEntity> items;
+  private List<ShoppingItemEntity> items;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "warehouse_id")
