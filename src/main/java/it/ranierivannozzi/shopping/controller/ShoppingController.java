@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
@@ -30,13 +31,13 @@ public class ShoppingController {
       summary = ShoppingOpenApi.CREATE_SUMMARY,
       description = ShoppingOpenApi.CREATE_DESCRIPTION,
       responses = {
-        @ApiResponse(responseCode = "200", description = ShoppingOpenApi.CREATE_RESPONSE_200),
+        @ApiResponse(responseCode = "201", description = ShoppingOpenApi.CREATE_RESPONSE_201),
         @ApiResponse(responseCode = "400", description = ShoppingOpenApi.CREATE_RESPONSE_400)
       })
   @PostMapping
   public ResponseEntity<ShoppingResponse> createShopping(@RequestBody ShoppingRequest request) {
     ShoppingResponse saved = shoppingService.save(request);
-    return ResponseEntity.ok(saved);
+    return ResponseEntity.status(HttpStatus.CREATED).body(saved);
   }
 
   @Operation(
@@ -76,10 +77,8 @@ public class ShoppingController {
       })
   @GetMapping(ShoppingRoute.ID)
   public ResponseEntity<ShoppingResponse> getShoppingById(@PathVariable Long id) {
-    return shoppingService
-        .findById(id)
-        .map(ResponseEntity::ok)
-        .orElse(ResponseEntity.notFound().build());
+    ShoppingResponse entity = shoppingService.findById(id);
+    return ResponseEntity.ok(entity);
   }
 
   @Operation(

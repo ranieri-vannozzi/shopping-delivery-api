@@ -20,7 +20,7 @@ public class ShoppingParser {
     shopping.setDeliveryLatitude(request.getDeliveryLatitude());
     shopping.setDeliveryLongitude(request.getDeliveryLongitude());
     shopping.setDeliveryAddress(request.getDeliveryAddress());
-    shopping.setStatus(request.getStatus() != null ? request.getStatus() : ShoppingStatus.CREATED);
+    shopping.setStatus(ShoppingStatus.CREATED);
     shopping.setRequestedDeliveryDate(request.getRequestedDeliveryDate());
     shopping.setCustomerName(request.getCustomerName());
     shopping.setCustomerPhone(request.getCustomerPhone());

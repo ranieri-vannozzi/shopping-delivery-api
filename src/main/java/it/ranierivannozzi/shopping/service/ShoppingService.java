@@ -1,7 +1,6 @@
 package it.ranierivannozzi.shopping.service;
 
 import java.util.List;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
 import it.ranierivannozzi.shopping.entity.ShoppingEntity;
 import it.ranierivannozzi.shopping.entity.WarehouseEntity;
@@ -62,8 +61,10 @@ public class ShoppingService implements IShoppingService {
   }
 
   @Override
-  public Optional<ShoppingResponse> findById(Long id) {
-    return Optional.empty();
+  public ShoppingResponse findById(Long id) {
+    ShoppingEntity shoppingEntity =
+        shoppingRepository.findById(id).orElseThrow(() -> new ShoppingNotFoundException(id));
+    return ShoppingParser.toResponse(shoppingEntity);
   }
 
   @Override

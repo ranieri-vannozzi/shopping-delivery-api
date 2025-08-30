@@ -9,7 +9,7 @@ public class ShoppingOpenApi {
   public static final String CREATE_SUMMARY = "Create a new shopping";
   public static final String CREATE_DESCRIPTION =
       "Creates a new shopping with given details such as delivery coordinates, items, and status";
-  public static final String CREATE_RESPONSE_200 = "Shopping created successfully";
+  public static final String CREATE_RESPONSE_201 = "Shopping created successfully";
   public static final String CREATE_RESPONSE_400 = "Invalid request body";
 
   public static final String UPDATE_SUMMARY = "Update certain fields of a shopping";

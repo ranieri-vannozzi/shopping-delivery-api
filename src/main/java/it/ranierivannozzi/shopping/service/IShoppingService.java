@@ -1,7 +1,6 @@
 package it.ranierivannozzi.shopping.service;
 
 import java.util.List;
-import java.util.Optional;
 import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
 import it.ranierivannozzi.shopping.model.request.ShoppingRequest;
 import it.ranierivannozzi.shopping.model.response.ShoppingResponse;
@@ -31,7 +30,7 @@ public interface IShoppingService {
    * @param id the shopping ID
    * @return Optional containing the shopping if found
    */
-  Optional<ShoppingResponse> findById(Long id);
+  ShoppingResponse findById(Long id);
 
   /**
    * Retrieve all shoppings.
