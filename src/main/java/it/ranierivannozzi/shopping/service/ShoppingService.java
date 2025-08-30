@@ -78,7 +78,11 @@ public class ShoppingService implements IShoppingService {
   }
 
   @Override
-  public void deleteById(Long id) {}
+  public void deleteById(Long id) {
+    ShoppingEntity shoppingEntity =
+        shoppingRepository.findById(id).orElseThrow(() -> new ShoppingNotFoundException(id));
+    shoppingRepository.delete(shoppingEntity);
+  }
 
   @Override
   public boolean existsById(Long id) {

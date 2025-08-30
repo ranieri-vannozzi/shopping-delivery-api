@@ -85,12 +85,11 @@ public class ShoppingController {
       summary = ShoppingOpenApi.DELETE_SUMMARY,
       description = ShoppingOpenApi.DELETE_DESCRIPTION,
       responses = {
-        @ApiResponse(responseCode = "200", description = ShoppingOpenApi.DELETE_RESPONSE_204),
+        @ApiResponse(responseCode = "204", description = ShoppingOpenApi.DELETE_RESPONSE_204),
         @ApiResponse(responseCode = "404", description = ShoppingOpenApi.DELETE_RESPONSE_404)
       })
   @DeleteMapping(ShoppingRoute.ID)
   public ResponseEntity<Void> deleteShopping(@PathVariable Long id) {
-    if (!shoppingService.existsById(id)) return ResponseEntity.notFound().build();
     shoppingService.deleteById(id);
     return ResponseEntity.noContent().build();
   }
