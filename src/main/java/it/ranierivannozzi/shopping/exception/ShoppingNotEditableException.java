@@ -12,8 +12,4 @@ public class ShoppingNotEditableException extends RuntimeException {
             + " cannot be modified because it has already left the warehouse: "
             + id);
   }
-
-  public ShoppingNotEditableException(String message) {
-    super(message);
-  }
 }

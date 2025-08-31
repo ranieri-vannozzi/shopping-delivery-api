@@ -2,10 +2,12 @@ package it.ranierivannozzi.shopping.model.response;
 
 import java.math.BigDecimal;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class ShoppingItemResponse extends BaseResponse {
   private Long id;
   private String productName;

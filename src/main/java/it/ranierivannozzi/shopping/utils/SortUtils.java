@@ -6,15 +6,13 @@ import org.springframework.data.domain.Sort;
 
 public class SortUtils {
 
-  private SortUtils() {
-    // Utility class non instanziabile
-  }
+  private SortUtils() {}
 
   public static Sort getSort(String[] sortBy, String[] sortDirection) {
     if (sortBy != null && sortBy.length > 0) {
       List<Sort.Order> orders = new ArrayList<>();
       for (int i = 0; i < sortBy.length; i++) {
-        Sort.Direction direction = Sort.Direction.ASC; // default
+        Sort.Direction direction = Sort.Direction.ASC;
         if (sortDirection != null && i < sortDirection.length) {
           if ("desc".equalsIgnoreCase(sortDirection[i])) {
             direction = Sort.Direction.DESC;

@@ -1,6 +1,5 @@
 package it.ranierivannozzi.shopping.service;
 
-import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
@@ -49,18 +48,10 @@ public interface IShoppingService {
   void deleteById(Long id);
 
   /**
-   * Check if shopping exists by ID.
-   *
-   * @param id the shopping ID
-   * @return true if exists, false otherwise
-   */
-  boolean existsById(Long id);
-
-  /**
    * Finds and retrieves shopping routes based on the specified shopping status.
    *
    * @param status the shopping status used to filter the routes
    * @return a list of shopping route responses that match the given status
    */
-  List<ShoppingRouteResponse> findRoutes(ShoppingStatus status);
+  ShoppingRouteResponse findRoutes(Long warehouseId, ShoppingStatus status);
 }

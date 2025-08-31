@@ -1,6 +1,9 @@
 package it.ranierivannozzi.shopping.service;
 
+import com.google.maps.model.DirectionsResult;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,7 @@ import it.ranierivannozzi.shopping.model.response.ShoppingResponse;
 import it.ranierivannozzi.shopping.model.response.ShoppingRouteResponse;
 import it.ranierivannozzi.shopping.repository.ShoppingRepository;
 import it.ranierivannozzi.shopping.repository.WarehouseRepository;
+import it.ranierivannozzi.shopping.utils.RouteUtils;
 import it.ranierivannozzi.shopping.utils.ShoppingParser;
 
 @Service
@@ -22,11 +26,15 @@ public class ShoppingService implements IShoppingService {
 
   private final ShoppingRepository shoppingRepository;
   private final WarehouseRepository warehouseRepository;
+  private final RouteService routeService;
 
   public ShoppingService(
-      ShoppingRepository shoppingRepository, WarehouseRepository warehouseRepository) {
+      ShoppingRepository shoppingRepository,
+      WarehouseRepository warehouseRepository,
+      RouteService routeService) {
     this.warehouseRepository = warehouseRepository;
     this.shoppingRepository = shoppingRepository;
+    this.routeService = routeService;
   }
 
   @Override
@@ -90,13 +98,53 @@ public class ShoppingService implements IShoppingService {
   }
 
   @Override
-  public boolean existsById(Long id) {
-    return false;
-  }
+  public ShoppingRouteResponse findRoutes(Long warehouseId, ShoppingStatus status) {
 
-  @Override
-  public List<ShoppingRouteResponse> findRoutes(ShoppingStatus status) {
-    return List.of();
+    WarehouseEntity warehouse =
+        warehouseRepository
+            .findById(warehouseId)
+            .orElseThrow(() -> new WarehouseNotFoundException(warehouseId));
+
+    List<ShoppingEntity> list = shoppingRepository.findByWarehouseAndStatus(warehouse, status);
+
+    Double warehouseLatitude = warehouse.getLatitude();
+    Double warehouseLongitude = warehouse.getLongitude();
+
+    Map<Double, Double> waypoints = new HashMap<Double, Double>();
+
+    for (ShoppingEntity shoppingEntity : list) {
+      Double deliveryLatitude = shoppingEntity.getDeliveryLatitude();
+      Double deliveryLongitude = shoppingEntity.getDeliveryLongitude();
+      waypoints.put(deliveryLatitude, deliveryLongitude);
+    }
+
+    DirectionsResult optimizedDirections =
+        routeService.getOptimizedRoute(
+            warehouseLatitude,
+            warehouseLongitude,
+            warehouseLatitude,
+            warehouseLongitude,
+            waypoints);
+
+    Long totalDistance = routeService.getDistanceInMeters(optimizedDirections);
+    Long totalDuration = routeService.getDurationInSeconds(optimizedDirections);
+    List<String> poi = RouteUtils.extractAddressList(optimizedDirections);
+
+    List<ShoppingEntity> orderedShoppingList =
+        RouteUtils.reorderShoppingByOptimizedRoute(optimizedDirections, list);
+
+    ShoppingRouteResponse routeResponse = new ShoppingRouteResponse();
+
+    routeResponse.setPoi(poi);
+    routeResponse.setTotalDistance(totalDistance);
+    routeResponse.setTotalDurationSec(totalDuration);
+    routeResponse.setTotalStops(orderedShoppingList.size());
+    routeResponse.setTotalDuration(RouteUtils.formatSeconds(totalDuration));
+    routeResponse.setTotalDistanceKm(totalDistance / 1000.00 + " Km");
+    routeResponse.setRouteDescription(
+        RouteUtils.buildRouteDescription(orderedShoppingList, warehouse));
+
+    return routeResponse;
   }
 
   private ShoppingEntity editOnlyAvailableFields(

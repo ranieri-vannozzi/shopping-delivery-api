@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -119,9 +118,10 @@ public class ShoppingController {
         @ApiResponse(responseCode = "404", description = ShoppingOpenApi.ROUTES_RESPONSE_404)
       })
   @GetMapping(ShoppingRoute.ROUTES)
-  public ResponseEntity<List<ShoppingRouteResponse>> getShoppingRoutesByStatus(
+  public ResponseEntity<ShoppingRouteResponse> getShoppingRoutes(
+      @RequestParam(required = false) Long warehouseId,
       @RequestParam(required = false) ShoppingStatus status) {
-    List<ShoppingRouteResponse> list = shoppingService.findRoutes(status);
-    return ResponseEntity.ok(list);
+    ShoppingRouteResponse response = shoppingService.findRoutes(warehouseId, status);
+    return ResponseEntity.ok(response);
   }
 }

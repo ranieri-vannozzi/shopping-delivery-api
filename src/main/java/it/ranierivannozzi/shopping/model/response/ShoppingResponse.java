@@ -3,11 +3,13 @@ package it.ranierivannozzi.shopping.model.response;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
 
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class ShoppingResponse extends BaseResponse {
   private Long id;
   private Double deliveryLatitude;
