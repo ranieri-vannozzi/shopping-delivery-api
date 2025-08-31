@@ -10,14 +10,12 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import it.ranierivannozzi.shopping.exception.RouteRuntimeException;
 
 @Service
 public class RouteService implements IRouteService {
 
   private final GeoApiContext context;
-  private final RestTemplate restTemplate = new RestTemplate();
 
   public RouteService(@Value("${google.maps.api.key}") String apiKey) {
     context = new GeoApiContext.Builder().apiKey(apiKey).build();
