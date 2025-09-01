@@ -1,7 +1,7 @@
 🟦 Shopping Delivery API
 ==========================
 
-This project is a **Spring Boot** application developed in **Java 21**, using **Maven** as the build system.It integrates with **PostgreSQL** as the database, supports **Docker build & run**, and provides **API documentation with Swagger / OpenAPI**.
+This project is a **Spring Boot** application developed in **Java 21**, using **Maven** as the build system. It integrates with **PostgreSQL** as the database, supports **Docker build & run**, and provides **API documentation with Swagger / OpenAPI**.
 
 Main Technologies
 -------------------
@@ -28,7 +28,7 @@ Main Technologies
 
 ### 1\. Clone the repository
 
-```git clone https://github.com/your-username/your-repo.git  cd your-repo```
+```git clone git@github.com:ranieri-vannozzi/shopping-delivery-api.git```
 
 ### 2\. Start PostgreSQL with Docker Compose
 
