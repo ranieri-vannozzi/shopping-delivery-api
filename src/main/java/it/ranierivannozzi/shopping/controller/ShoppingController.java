@@ -21,7 +21,6 @@ import it.ranierivannozzi.shopping.service.IShoppingService;
 import it.ranierivannozzi.shopping.utils.SortUtils;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(ApiRoute.V1 + ShoppingRoute.ROOT)
 @Tag(name = ShoppingOpenApi.CONTROLLER_NAME, description = ShoppingOpenApi.CONTROLLER_DESCRIPTION)
 public class ShoppingController {
@@ -40,6 +39,7 @@ public class ShoppingController {
         @ApiResponse(responseCode = "400", description = ShoppingOpenApi.CREATE_RESPONSE_400)
       })
   @PostMapping
+  @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "false")
   public ResponseEntity<ShoppingResponse> createShopping(@RequestBody ShoppingRequest request) {
     ShoppingResponse saved = shoppingService.save(request);
     return ResponseEntity.status(HttpStatus.CREATED).body(saved);
@@ -53,6 +53,7 @@ public class ShoppingController {
         @ApiResponse(responseCode = "404", description = ShoppingOpenApi.UPDATE_RESPONSE_404)
       })
   @PatchMapping(ShoppingRoute.ID)
+  @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "false")
   public ResponseEntity<ShoppingResponse> updateShopping(
       @PathVariable Long id, @RequestBody ShoppingRequest partial) {
     ShoppingResponse updated = shoppingService.update(id, partial);
@@ -66,6 +67,7 @@ public class ShoppingController {
         @ApiResponse(responseCode = "200", description = ShoppingOpenApi.GET_ALL_RESPONSE_200)
       })
   @GetMapping
+  @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "false")
   public ResponseEntity<Page<ShoppingResponse>> getAllShopping(
       @RequestParam(defaultValue = "0")
           @Parameter(description = ShoppingOpenApi.PAGE_NUMBER_DESCRIPTION)
@@ -93,6 +95,7 @@ public class ShoppingController {
         @ApiResponse(responseCode = "404", description = ShoppingOpenApi.GET_BY_ID_RESPONSE_404)
       })
   @GetMapping(ShoppingRoute.ID)
+  @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "false")
   public ResponseEntity<ShoppingResponse> getShoppingById(@PathVariable Long id) {
     ShoppingResponse entity = shoppingService.findById(id);
     return ResponseEntity.ok(entity);
@@ -106,6 +109,7 @@ public class ShoppingController {
         @ApiResponse(responseCode = "404", description = ShoppingOpenApi.DELETE_RESPONSE_404)
       })
   @DeleteMapping(ShoppingRoute.ID)
+  @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "false")
   public ResponseEntity<Void> deleteShopping(@PathVariable Long id) {
     shoppingService.deleteById(id);
     return ResponseEntity.noContent().build();
@@ -119,6 +123,7 @@ public class ShoppingController {
         @ApiResponse(responseCode = "404", description = ShoppingOpenApi.ROUTES_RESPONSE_404)
       })
   @GetMapping(ShoppingRoute.ROUTES)
+  @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "false")
   public ResponseEntity<ShoppingRouteResponse> getShoppingRoutes(
       @RequestParam(required = false) Long warehouseId,
       @RequestParam(required = false) ShoppingStatus status) {

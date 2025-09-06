@@ -10,4 +10,16 @@ public class Api {
 
     SpringApplication.run(Api.class, args);
   }
+
+  //  @Bean
+  //  public WebMvcConfigurer corsConfigurer() {
+  //    return new WebMvcConfigurer() {
+  //      @Override
+  //      public void addCorsMappings(CorsRegistry registry) {
+  //        registry.addMapping(ApiRoute.V1 +
+  // ShoppingRoute.ROOT).allowedOrigins("http://localhost:4200");
+  //      }
+  //    };
+  //  }
+
 }
