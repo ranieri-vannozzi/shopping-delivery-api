@@ -38,7 +38,7 @@ public class WarehouseEntity {
   private Boolean isActive;
 
   @OneToMany(mappedBy = "warehouse", fetch = FetchType.LAZY)
-  private List<ShoppingEntity> shoppings;
+  private List<ShoppingEntity> shopping;
 
   public WarehouseEntity() {}
 

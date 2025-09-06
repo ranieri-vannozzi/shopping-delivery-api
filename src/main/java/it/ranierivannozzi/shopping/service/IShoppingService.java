@@ -34,7 +34,7 @@ public interface IShoppingService {
   ShoppingResponse findById(Long id);
 
   /**
-   * Retrieve all shoppings.
+   * Retrieve all shopping.
    *
    * @return list of all shopping responses
    */
