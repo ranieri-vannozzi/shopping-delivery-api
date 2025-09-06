@@ -21,7 +21,7 @@ import it.ranierivannozzi.shopping.service.IShoppingService;
 import it.ranierivannozzi.shopping.utils.SortUtils;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(ApiRoute.V1 + ShoppingRoute.ROOT)
 @Tag(name = ShoppingOpenApi.CONTROLLER_NAME, description = ShoppingOpenApi.CONTROLLER_DESCRIPTION)
 public class ShoppingController {

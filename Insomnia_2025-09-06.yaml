@@ -1,0 +1,285 @@
+type: collection.insomnia.rest/5.0
+name: Shopping Delivery API
+meta:
+  id: wrk_7ad9b86be0f1483da4beafe82f4844a7
+  created: 1756564667680
+  modified: 1756564667680
+  description: ""
+collection:
+  - url: http://localhost:8080/v1/api/shopping
+    name: v1/api/shopping
+    meta:
+      id: req_95f1e16feae1451a974dc592af2df021
+      created: 1756564684080
+      modified: 1757153354581
+      isPrivate: false
+      description: ""
+      sortKey: -1756586859560.5
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "deliveryLatitude": 43.7696,
+          "deliveryLongitude": 11.2558,
+          "deliveryAddress": "Via della Ranieri 222220, Bari",
+          "requestedDeliveryDate": "2025-09-01T10:00:00",
+          "customerName": "Ranieri Rossi",
+          "customerPhone": "+39 333 1234567",
+          "deliveryNotes": "Suonare il campanello 2 volte",
+          "totalAmount": 54.50,
+          "warehouseId": 3,
+          "items": [
+            {
+              "productName": "Latte UHT",
+              "productCode": "LT001",
+              "quantity": 10,
+              "unitPrice": 1.50,
+              "category": "Latticini",
+              "brand": "Fattoria Pistoia",
+              "weight": 1.0,
+              "unitOfMeasure": "L"
+            },
+            {
+              "productName": "Pane Integrale",
+              "productCode": "PN002",
+              "quantity": 5,
+              "unitPrice": 2.00,
+              "category": "Panetteria",
+              "brand": "Forno Firenze",
+              "weight": 0.5,
+              "unitOfMeasure": "Kg"
+            }
+          ]
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/v1/api/shopping/1
+    name: /v1/api/shopping/{id}
+    meta:
+      id: req_b33718120a084e4e9c9ef66a036f7242
+      created: 1756568292554
+      modified: 1757153360593
+      isPrivate: false
+      description: ""
+      sortKey: -1756579422502.75
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "deliveryLatitude": 43.7784,
+          "deliveryLongitude": 11.2463,
+          "deliveryAddress": "Via Roma 123, Prato",
+          "requestedDeliveryDate": "2025-09-05T10:30:00",
+          "customerName": "Mario Rossi",
+          "customerPhone": "+390551234567",
+          "deliveryNotes": "Suonare al citofono",
+          "totalAmount": 150.75,
+          "warehouseId": 1
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/v1/api/shopping/3
+    name: /v1/api/shopping/{id}
+    meta:
+      id: req_b400689761a84e35b54ce05f25894079
+      created: 1756571668746
+      modified: 1757153374922
+      isPrivate: false
+      description: ""
+      sortKey: -1756601733676
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/v1/api/shopping/1
+    name: /v1/api/shopping/{id}
+    meta:
+      id: req_a0d119e8905f45e4b28f709c0455d5da
+      created: 1756571985445
+      modified: 1757153363245
+      isPrivate: false
+      description: ""
+      sortKey: -1756571985445
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/v1/api/shopping
+    name: /v1/api/shopping
+    meta:
+      id: req_d34d656c7b9044b2a04593d43793813b
+      created: 1756572328539
+      modified: 1757153341499
+      isPrivate: false
+      description: ""
+      sortKey: -1756631639545
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/v1/api/shopping?status=READY_FOR_DELIVERY
+    name: /v1/api/shopping?status=READY_FOR_DELIVERY
+    meta:
+      id: req_13caa179343541058845233aca603a2d
+      created: 1756631481907
+      modified: 1757153350038
+      isPrivate: false
+      description: ""
+      sortKey: -1756631481907
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/v1/api/shopping?sortBy=id&sortDirection=desc
+    name: /v1/api/shopping?sortBy=id&sortDirection=desc
+    meta:
+      id: req_b29d1b9139f34c1fb58947c4994f8d25
+      created: 1756631514547
+      modified: 1757153347634
+      isPrivate: false
+      description: ""
+      sortKey: -1756631514547
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/v1/api/shopping?pageSize=3&pageNumber=1
+    name: /v1/api/shopping?pageSize=2&pageNumber=1
+    meta:
+      id: req_0f72a92bf6a54e96a2daf0c582ee741a
+      created: 1756631639445
+      modified: 1757187642867
+      isPrivate: false
+      description: ""
+      sortKey: -1756631639445
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: https://maps.googleapis.com/maps/api/directions/json?origin=45.4642,9.19&destination=45.4773,9.1815&waypoints=optimize:true|45.472,9.2|45.489,9.21&key=YOUR_GOOGLE_MAPS_API_KEY
+    name: gmaps api
+    meta:
+      id: req_9f43a29d641b44b5b7139c825ab6831e
+      created: 1756632461636
+      modified: 1756637178521
+      isPrivate: false
+      description: ""
+      sortKey: -1756632461636
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/v1/api/shopping/routes?status=READY_FOR_DELIVERY&warehouseId=3
+    name: /v1/api/shopping/routes
+    meta:
+      id: req_1928ccc6a486442b8f3a6ae480c1082b
+      created: 1756637147914
+      modified: 1757153365895
+      isPrivate: false
+      description: ""
+      sortKey: -1756571985345
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_e2ef51366cfb87a84f2533159c59b0a480c5a6df
+    created: 1756564667693
+    modified: 1756564667693
+environments:
+  name: Base Environment
+  meta:
+    id: env_e2ef51366cfb87a84f2533159c59b0a480c5a6df
+    created: 1756564667687
+    modified: 1756564667687
+    isPrivate: false

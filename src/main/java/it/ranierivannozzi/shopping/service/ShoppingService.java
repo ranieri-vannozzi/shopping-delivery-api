@@ -140,7 +140,7 @@ public class ShoppingService implements IShoppingService {
     routeResponse.setTotalDurationSec(totalDuration);
     routeResponse.setTotalStops(orderedShoppingList.size());
     routeResponse.setTotalDuration(RouteUtils.formatSeconds(totalDuration));
-    routeResponse.setTotalDistanceKm(totalDistance / 1000.00 + " Km");
+    routeResponse.setTotalDistanceKm(Math.round(totalDistance / 1000.00) + " Km");
     routeResponse.setRouteDescription(
         RouteUtils.buildRouteDescription(orderedShoppingList, warehouse));
 
