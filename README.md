@@ -24,7 +24,8 @@ Main Technologies
 
 
 ⚙️ Local Setup
---------------
+--------------------
+---
 
 ### 1\. Clone the repository
 
@@ -50,7 +51,8 @@ Default database configuration:
 
 
 ▶️ Build and Run
-----------------
+--------------------
+---
 
 ### 1\. Build with Maven
 
@@ -67,14 +69,16 @@ Default database configuration:
 Application will be available at:👉 [http://localhost:8080](http://localhost:8080)
 
 🧪 Testing
-----------
+--------------------
+---
 
 Tests are written with **JUnit**. Run them with:
 
 ```mvn test```
 
 🐳 Docker
----------
+--------------------
+---
 
 ### Build Docker image
 
@@ -90,6 +94,7 @@ The project includes a Dockerfile. To build the image:
 
 📖 API Documentation
 --------------------
+---
 
 *   **Swagger UI** → [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
@@ -98,6 +103,7 @@ The project includes a Dockerfile. To build the image:
 
 🧹 Code Formatting
 ------------------
+---
 
 The project uses **Spotless** to keep the code style consistent.
 
@@ -108,3 +114,17 @@ Format the code automatically:
 Check formatting without applying changes:
 
 ```mvn spotless:check```
+
+🚀 Continuous integration
+------------------
+---
+
+This project uses GitHub Actions for automated CI/CD. 
+The backend pipeline automatically runs on every push and pull request to the main branch, performing the following steps:
+
+- Environment Setup: configures JDK 21 and Docker Compose
+- Database: starts PostgreSQL container and waits for readiness
+- Build & Test: compiles and tests the application using Maven
+- Artifact Storage: saves the generated JAR file for deployment
+
+The CI ensures code quality and build integrity before merging changes.

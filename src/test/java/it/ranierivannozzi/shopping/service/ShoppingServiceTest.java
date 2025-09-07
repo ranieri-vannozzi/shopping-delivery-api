@@ -75,7 +75,7 @@ class ShoppingServiceTest {
 
     ShoppingEntity entity = new ShoppingEntity();
     entity.setId(5L);
-    entity.setStatus(ShoppingStatus.CREATED); // editable
+    entity.setStatus(ShoppingStatus.CREATED);
 
     when(shoppingRepository.findById(5L)).thenReturn(Optional.of(entity));
     when(shoppingRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
@@ -92,7 +92,7 @@ class ShoppingServiceTest {
 
     ShoppingEntity entity = new ShoppingEntity();
     entity.setId(5L);
-    entity.setStatus(ShoppingStatus.DELIVERED); // not editable
+    entity.setStatus(ShoppingStatus.DELIVERED);
 
     when(shoppingRepository.findById(5L)).thenReturn(Optional.of(entity));
 
