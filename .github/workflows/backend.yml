@@ -31,6 +31,8 @@ jobs:
           done
 
       - name: Build with Maven
+        env:
+          GOOGLE_MAPS_API_KEY: AIzaFakeKeyForTestsOnly0000000000000000
         run: mvn -B clean install --file pom.xml
 
       - name: Save JAR artifact

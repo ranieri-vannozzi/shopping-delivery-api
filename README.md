@@ -92,6 +92,10 @@ The project includes a Dockerfile. To build the image:
 
 ```docker run -p 8080:8080 --env-file .env shopping-delivery-api:latest```
 
+The service needs a Google Maps API key to compute the delivery routes: set `GOOGLE_MAPS_API_KEY` in the `.env` file
+(or in the environment when running it locally). The service does not start without it. The build and the tests use a
+fake key and never call Google.
+
 ⚠️ Make sure the PostgreSQL container (started with postgres-compose.yml) is running.
 
 📖 API Documentation
