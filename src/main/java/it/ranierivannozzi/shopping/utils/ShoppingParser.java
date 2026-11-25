@@ -1,7 +1,5 @@
 package it.ranierivannozzi.shopping.utils;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import it.ranierivannozzi.shopping.entity.ShoppingEntity;
 import it.ranierivannozzi.shopping.entity.ShoppingItemEntity;
 import it.ranierivannozzi.shopping.entity.WarehouseEntity;
@@ -10,6 +8,8 @@ import it.ranierivannozzi.shopping.model.request.ShoppingItemRequest;
 import it.ranierivannozzi.shopping.model.request.ShoppingRequest;
 import it.ranierivannozzi.shopping.model.response.ShoppingItemResponse;
 import it.ranierivannozzi.shopping.model.response.ShoppingResponse;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShoppingParser {
 

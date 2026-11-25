@@ -4,12 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
 import it.ranierivannozzi.shopping.model.request.ShoppingRequest;
 import it.ranierivannozzi.shopping.model.response.ShoppingResponse;
@@ -19,6 +13,12 @@ import it.ranierivannozzi.shopping.route.ApiRoute;
 import it.ranierivannozzi.shopping.route.ShoppingRoute;
 import it.ranierivannozzi.shopping.service.IShoppingService;
 import it.ranierivannozzi.shopping.utils.SortUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(ApiRoute.V1 + ShoppingRoute.ROOT)

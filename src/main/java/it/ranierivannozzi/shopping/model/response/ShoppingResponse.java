@@ -1,11 +1,11 @@
 package it.ranierivannozzi.shopping.model.response;
 
+import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
 
 @Data
 @NoArgsConstructor

@@ -1,8 +1,8 @@
 package it.ranierivannozzi.shopping.repository;
 
+import it.ranierivannozzi.shopping.entity.WarehouseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import it.ranierivannozzi.shopping.entity.WarehouseEntity;
 
 @Repository
 public interface WarehouseRepository extends JpaRepository<WarehouseEntity, Long> {}

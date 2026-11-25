@@ -10,5 +10,6 @@ import org.springframework.context.annotation.Configuration;
         @Info(
             title = "Shopping Delivery API",
             version = "v1",
-            description = "Shopping delivery API: orders, warehouses and optimized delivery routes"))
+            description =
+                "Shopping delivery API: orders, warehouses and optimized delivery routes"))
 public class OpenApiConfig {}

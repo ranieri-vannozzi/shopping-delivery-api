@@ -3,13 +3,13 @@ package it.ranierivannozzi.shopping.utils;
 import com.google.maps.model.DirectionsLeg;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
+import it.ranierivannozzi.shopping.entity.ShoppingEntity;
+import it.ranierivannozzi.shopping.entity.WarehouseEntity;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import it.ranierivannozzi.shopping.entity.ShoppingEntity;
-import it.ranierivannozzi.shopping.entity.WarehouseEntity;
 
 public class RouteUtils {
 

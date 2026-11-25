@@ -3,12 +3,6 @@ package it.ranierivannozzi.shopping.service;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import java.util.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import it.ranierivannozzi.shopping.entity.ShoppingEntity;
 import it.ranierivannozzi.shopping.entity.WarehouseEntity;
 import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
@@ -19,6 +13,12 @@ import it.ranierivannozzi.shopping.model.request.ShoppingRequest;
 import it.ranierivannozzi.shopping.model.response.ShoppingResponse;
 import it.ranierivannozzi.shopping.repository.ShoppingRepository;
 import it.ranierivannozzi.shopping.repository.WarehouseRepository;
+import java.util.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 class ShoppingServiceTest {
 

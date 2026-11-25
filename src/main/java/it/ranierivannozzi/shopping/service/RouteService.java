@@ -5,12 +5,12 @@ import com.google.maps.GeoApiContext;
 import com.google.maps.model.DirectionsLeg;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.TravelMode;
+import it.ranierivannozzi.shopping.exception.RouteRuntimeException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import it.ranierivannozzi.shopping.exception.RouteRuntimeException;
 
 @Service
 public class RouteService implements IRouteService {

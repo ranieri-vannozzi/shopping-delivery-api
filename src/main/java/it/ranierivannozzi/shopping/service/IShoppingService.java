@@ -1,11 +1,11 @@
 package it.ranierivannozzi.shopping.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
 import it.ranierivannozzi.shopping.model.request.ShoppingRequest;
 import it.ranierivannozzi.shopping.model.response.ShoppingResponse;
 import it.ranierivannozzi.shopping.model.response.ShoppingRouteResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface IShoppingService {
 

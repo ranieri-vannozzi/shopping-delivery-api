@@ -1,12 +1,12 @@
 package it.ranierivannozzi.shopping.entity;
 
+import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import it.ranierivannozzi.shopping.enumeration.ShoppingStatus;
 
 @Getter
 @Setter
