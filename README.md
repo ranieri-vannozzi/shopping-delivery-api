@@ -3,6 +3,8 @@
 
 This project is a **Spring Boot** application developed in **Java 21**, using **Maven** as the build system. It integrates with **PostgreSQL** as the database, supports **Docker build & run**, and provides **API documentation with Swagger / OpenAPI**.
 
+It is the backend of a grocery delivery service; the web frontend is [shopping-delivery-ng](https://github.com/ranieri-vannozzi/shopping-delivery-ng). The requirements are in [docs/requirements.md](docs/requirements.md).
+
 Main Technologies
 -------------------
 
